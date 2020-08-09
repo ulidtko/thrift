@@ -18,9 +18,12 @@
 #
 
 THRIFT = ../../compiler/cpp/thrift
-THRIFT_OMIT_FILE = test/Thrift_omit_without.thrift
-THRIFT_FILES = $(wildcard test/*.thrift) \
-		  $(THRIFT_OMIT_FILE) \
+THRIFT_FILES = \
+		test/multiplexing.thrift \
+		test/Thrift1151.thrift \
+		test/Thrift1475.thrift \
+		test/Thrift_omit_with.thrift \
+		test/Thrift_omit_without.thrift \
 		  ../../test/ConstantsDemo.thrift \
 		  ../../test/NameConflictTest.thrift \
 		  ../../test/DoubleConstantsTest.thrift \
@@ -36,9 +39,6 @@ ERL_FLAG = erl
 ERL_FLAG_LEGACY = erl:legacynames
 ERL_FLAG_MAPS = erl:maps
 endif
-
-$(THRIFT_OMIT_FILE): test/Thrift_omit_with.thrift
-	grep -v omit $< >$@
 
 .generated: $(THRIFT) $(THRIFT_FILES)
 	for f in $(THRIFT_FILES) ; do \
@@ -72,7 +72,6 @@ clean-local:
 	$(RM) -r .rebar/
 	$(RM) -r _build/
 	$(RM) -r test/gen-erl/
-	$(RM)    $(THRIFT_OMIT_FILE)
 
 maintainer-clean-local:
 	$(RM) -r ebin/
