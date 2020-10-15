@@ -21,8 +21,10 @@
 
 -export([start/0, start/1, start_link/2, handle_function/2]).
 
--include("thrift_constants.hrl").
--include("gen-erl/thrift_test_types.hrl").
+%-- from Thrift erl lib
+-include_lib("thrift_constants.hrl").
+
+-include("thrift_test_thrift.hrl"). %-- Thrift-generated
 
 -record(options, {port = 9090,
                   server_opts = []}).
@@ -65,7 +67,7 @@ parse_args([Head | Rest], Opts) ->
 start() -> start(init:get_plain_arguments()).
 start(Args) ->
     #options{port = Port, server_opts = ServerOpts} = parse_args(Args),
-    spawn(fun() -> start_link(Port, ServerOpts), receive after infinity -> ok end end).
+    spawn_link(start_link, [Port, ServerOpts]).
 
 start_link(Port, ServerOpts) ->
     thrift_socket_server:start([{handler, ?MODULE},

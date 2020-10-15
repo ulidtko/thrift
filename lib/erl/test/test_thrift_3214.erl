@@ -26,6 +26,8 @@
 -ifndef(otp16_or_less).
 -include_lib("eunit/include/eunit.hrl").
 
+%% This tests thrift -gen erl:maps
+
 record_generation_test_() ->
   [
     {"StringMap record", ?_assertMatch(

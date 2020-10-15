@@ -24,6 +24,8 @@
 
 -include("gen-erl/legacyNames_constants.hrl").
 
+%% This tests thrift -gen erl:legacynames
+
 record_generation_test_() ->
   [
     {"capitalizedStruct record", ?_assertMatch(

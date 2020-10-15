@@ -21,7 +21,9 @@
 
 -export([start/0, start/1]).
 
--include("gen-erl/thrift_test_types.hrl").
+-include("thrift_test_thrift.hrl"). %-- Thrift-generated
+
+-import(thrift_test_thrift, [function_info/2]).
 
 -record(options, {port = 9090,
                   client_opts = []}).

@@ -17,6 +17,7 @@
 %% under the License.
 %%
 %%% -*- mode:erlang -*-
+
 {application, thrift, [
   % A quick description of the application.
   {description, "Thrift bindings"},
@@ -72,3 +73,5 @@
     {exceptions_include_traces, true}
   ]}
 ]}.
+
+% vim: filetype=erlang

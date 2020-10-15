@@ -573,13 +573,12 @@
     "client": {
       "command": [
         "erl",
-        "+K",
-        "true",
+        "+K", "true",
         "-noshell",
-        "-pa",
-        "../../lib/erl/_build/default/lib/thrift/ebin/",
-        "-pa",
-        "./_build/default/lib/thrift_test/ebin",
+        "-ssl", "protocol_version", "['tlsv1.3', 'tlsv1.2', 'tlsv1.1']",
+        "-pa", "./ebin",
+        "-pa", "../../lib/erl/ebin",
+        "-pa", "../../lib/erl/.eunit",
         "-s",
         "test_client",
         "-s",

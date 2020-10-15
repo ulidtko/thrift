@@ -1,5 +1,7 @@
 -module(test_omit).
 
+-include_lib("thrift_protocol.hrl").
+
 -include("gen-erl/thrift_omit_with_types.hrl").
 
 -ifdef(TEST).
